@@ -1,0 +1,36 @@
+# Documentation and review material are intentionally excluded from this public export.
+*.md
+*.MD
+
+# Credentials, local configuration, and private integration state.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.token
+*token*
+*secret*
+*credential*
+*password*
+slides-com.config.json
+
+# Local machine data, generated exports, source media, and archives.
+__pycache__/
+*.py[cod]
+*.log
+*.pdf
+*.zip
+*.tar
+*.tar.*
+*.gz
+*.7z
+exports/
+dist/
+node_modules/
+coverage/
+*.ttf
+*.otf

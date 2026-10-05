@@ -1,0 +1,29 @@
+Local Reveal Slides Connector — generator source
+
+This directory contains the Python layout and Slides.com-native serialization
+code used to generate Reveal.js decks and editable Slides.com payloads.
+
+Inputs supplied by the operator:
+- A source JSON document describing the slides and passage boxes.
+- DIN Condensed Bold and DIN Alternate Bold font files, provided locally.
+- A Reveal.js directory for the offline viewer output.
+
+The repository intentionally excludes source presentations, font files, PDFs,
+exports, credentials, API keys, IP addresses, deployment configuration, and
+machine-specific paths.
+
+Install Python dependencies:
+  python3 -m pip install -r requirements.txt
+
+Generate a deck:
+  python3 build.py /path/to/source.json /path/to/DINCondensed-Bold.ttf /path/to/output /path/to/reveal.js
+
+For Slides.com API operations, configure the key only outside the repository:
+  SLIDES_API_KEY_FILE=/secure/path/to/key
+
+For relative image sources in a Slides.com payload, configure:
+  PRESENTATION_ASSET_ORIGIN=https://your-public-asset-origin.example
+
+The native output represents each focusable passage as one editable Slides.com
+text block. Progressive states preserve all geometry and original colors; only
+the .sl-block-style opacity changes between 1 and 0.5.

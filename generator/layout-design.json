@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "stableLineBreaks": true,
+  "preferCommaBreaks": true,
+  "headingPolicy": {"fontSize": 84, "minimumFontSize": 36, "font": "DINCondensed-Bold", "x": 56, "bottom": 114, "height": 114, "referenceGap": 26, "lineHeight": 1.25},
+  "referencePolicy": {"fontSize": 66, "minimumFontSize": 36, "font": "DINCondensed-Bold", "right": 1908, "bottom": 114, "height": 114, "padding": 4, "lineHeight": 1.25, "color": "#ffffff"},
+  "adaptedWidthPolicy": {"mode": "content-clamped", "minWidth": 320, "paddingLeft": 12, "paddingRight": 12},
+  "focusSizingDefaults": {"preferredFontSize": 96, "font": "DINCondensed-Bold", "margin": 48, "gap": 16, "paddingHorizontal": 12, "paddingVertical": 6, "lineHeight": 1.1},
+  "readabilityPolicy": {"enabled": true, "preferredFontSize": 96, "fontSizes": {"DINAlternate-Bold": 84}, "minimumFontSize": 36, "top": 154, "bottom": 1056, "margin": 48, "maximumLeftInset": 144, "gap": 16, "paddingHorizontal": 12, "paddingVertical": 6, "allowance": 4, "lineHeight": 1.1, "maximumLines": 4, "wrapTradeoffFloor": 0.65},
+  "archetypes": {
+    "staggered-quotation": "day-six",
+    "sanctuary-quotation": "breath-boundary",
+    "dominion-contrast": "works-of-gods-hands",
+    "warning-strips": "liar-murderer",
+    "mortality": "animal-mortality",
+    "life-and-death": "dying-like-beasts",
+    "serpent-contrast": "fatal-inversion"
+  },
+  "slides": {
+    "day-six": {"referenceProfile": "day-six"},
+    "breath-boundary": {"referenceProfile": "breath-boundary"},
+    "works-of-gods-hands": {"referenceProfile": "works-of-gods-hands"},
+    "fatal-inversion": {"referenceProfile": "fatal-inversion", "adaptation": "five-passage-inversion", "focusSizing": {"3": {}}},
+    "liar-murderer": {"referenceProfile": "liar-murderer"},
+    "animal-mortality": {"referenceProfile": "animal-mortality", "focusSizing": {"2": {}}},
+    "dying-like-beasts": {"referenceProfile": "dying-like-beasts"},
+    "murderers-beasts": {"referenceProfile": "murderers-beasts", "adaptation": "current-closing-passages"},
+    "egypt-sea-monster": {"archetype": "dominion-contrast"},
+    "devolution-king": {
+      "archetype": "sanctuary-quotation",
+      "boxOverrides": [
+        {"active": {"x": 48, "y": 177, "width": 1840, "height": 178}, "inactive": {"x": 48, "y": 177, "width": 1610, "height": 154}},
+        {"active": {"x": 230, "y": 381, "width": 1658, "height": 158}, "inactive": {"x": 350, "y": 381, "width": 1460, "height": 138}},
+        {"active": {"x": 56, "y": 561, "width": 1810, "height": 146}, "inactive": {"x": 56, "y": 561, "width": 1590, "height": 128}},
+        {"active": {"x": 144, "y": 738, "width": 1744, "height": 138}, "inactive": {"x": 260, "y": 738, "width": 1560, "height": 118}},
+        {"active": {"x": 62, "y": 902, "width": 1820, "height": 150}, "inactive": {"x": 322, "y": 902, "width": 1555, "height": 138}}
+      ]
+    },
+    "beasts-true-human": {"archetype": "dominion-contrast", "focusSizing": {"1": {}}},
+    "fleeing-serpent": {
+      "archetype": "serpent-contrast",
+      "boxOverrides": [{}, {}, {}, {
+        "active": {"x": 104, "y": 910, "width": 1750, "height": 114, "fontSize": 94},
+        "inactive": {"x": 467, "y": 910, "width": 1347, "height": 92, "fontSize": 72}
+      }]
+    },
+    "murderous-silence": {
+      "archetype": "warning-strips",
+      "boxOverrides": [
+        {"active": {"x": 54, "y": 230, "width": 1800, "height": 100, "fontSize": 64}, "inactive": {"x": 54, "y": 230, "width": 1570, "height": 88, "fontSize": 49}},
+        {"active": {"x": 135, "y": 384, "width": 1750, "height": 112, "fontSize": 64}, "inactive": {"x": 315, "y": 384, "width": 1490, "height": 100, "fontSize": 48}},
+        {"active": {"x": 54, "y": 540, "width": 1630, "height": 94, "fontSize": 64}, "inactive": {"x": 260, "y": 540, "width": 1420, "height": 84, "fontSize": 46}},
+        {"active": {"x": 93, "y": 670, "width": 1770, "height": 150, "fontSize": 62}, "inactive": {"x": 93, "y": 670, "width": 1580, "height": 136, "fontSize": 48}},
+        {"active": {"x": 120, "y": 884, "width": 1760, "height": 163, "fontSize": 62}, "inactive": {"x": 400, "y": 884, "width": 1480, "height": 147, "fontSize": 48}}
+      ]
+    },
+    "fleeing-prophet": {
+      "archetype": "staggered-quotation",
+      "boxOverrides": [{}, {}, {
+        "active": {"x": 45, "y": 532, "width": 1800, "height": 154, "fontSize": 80},
+        "inactive": {"x": 215, "y": 532, "width": 1600, "height": 133, "fontSize": 65}
+      }, {}, {}]
+    },
+    "beasts-choose-life": {"archetype": "dominion-contrast"},
+    "heart-of-beast": {"archetype": "serpent-contrast"},
+    "serving-not-devouring": {
+      "archetype": "warning-strips",
+      "adaptation": "six-passage-service",
+      "boxOverrides": [
+        {"active": {"x": 54, "y": 180, "width": 1740, "height": 85, "fontSize": 85}, "inactive": {"x": 54, "y": 180, "width": 1390, "height": 74, "fontSize": 63}},
+        {"active": {"x": 175, "y": 290, "width": 1700, "height": 100, "fontSize": 78}, "inactive": {"x": 430, "y": 290, "width": 1430, "height": 74, "fontSize": 60}},
+        {"active": {"x": 54, "y": 440, "width": 1815, "height": 130, "fontSize": 78}, "inactive": {"x": 54, "y": 440, "width": 1540, "height": 115, "fontSize": 60}},
+        {"active": {"x": 200, "y": 590, "width": 1650, "height": 106, "fontSize": 88}, "inactive": {"x": 420, "y": 590, "width": 1380, "height": 79, "fontSize": 62}},
+        {"active": {"x": 54, "y": 720, "width": 1780, "height": 103, "fontSize": 85}, "inactive": {"x": 54, "y": 720, "width": 1470, "height": 77, "fontSize": 63}},
+        {"active": {"x": 125, "y": 866, "width": 1755, "height": 190, "fontSize": 86}, "inactive": {"x": 350, "y": 866, "width": 1510, "height": 173, "fontSize": 64}}
+      ]
+    },
+    "cultivating-life": {"archetype": "mortality", "focusSizing": {"2": {}}}
+  }
+}

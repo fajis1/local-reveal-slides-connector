@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "baseFontSizePx": 30,
+  "fontSizeCalibration": "REST deck 3697337 exported 2026-09-30: percent/100 * 30 matches measured LeagueGothic canvas font sizes 79.25, 59.0, 47.25 and label 95.75 px; PDF 960x540 scaled by 2",
+  "minimumFontSizePx": 24,
+  "initialFitAllowancePx": 2,
+  "passageWidthPolicy": {"mode": "content-clamped", "minWidth": 0, "paddingLeft": 12, "paddingRight": 12},
+  "fonts": {
+    "condensed": {"family": "League Gothic", "weight": 400, "path": "/opt/reveal.js/css/theme/fonts/league-gothic/league-gothic.woff"},
+    "alternate": {"family": "Arial", "weight": 700, "path": "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"}
+  }
+}

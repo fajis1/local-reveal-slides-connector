@@ -1,0 +1,140 @@
+{
+  "palette": {
+    "red": {"bgColor":"#e42832","textColor":"#000000"},
+    "darkRed": {"bgColor":"#c41c2d","textColor":"#000000"},
+    "blue": {"bgColor":"#2489bf","textColor":"#ffffff"},
+    "blueBlack": {"bgColor":"#2489bf","textColor":"#000000"},
+    "cyan": {"bgColor":"#34a5da","textColor":"#000000"},
+    "gold": {"bgColor":"#fdcb56","textColor":"#232323"},
+    "goldBlack": {"bgColor":"#fdcb56","textColor":"#000000"},
+    "gray": {"bgColor":"#a6aaa9","textColor":"#000000"},
+    "white": {"bgColor":"#ffffff","textColor":"#000000"},
+    "clear": {"bgColor":null,"textColor":"#ffffff"},
+    "clearGold": {"bgColor":null,"textColor":"#fdcb56"},
+    "clearOrange": {"bgColor":null,"textColor":"#ff9d35"}
+  },
+  "defaults": {"x":40,"width":1840,"inactiveScale":0.6451612903225806,"inactiveOpacity":0.45},
+  "slides": {
+    "day-six": {
+      "referencePages":[1,5],
+      "boxes":[
+        {"style":"red","x":32,"width":1624,"anchor":"left"},
+        {"style":"blue","x":86,"width":1809,"anchor":"right"},
+        {"style":"goldBlack","x":45,"width":1558,"anchor":"center"},
+        {"style":"clear","x":180,"width":1650,"anchor":"left","highlights":[{"text":"DOMINION","color":"#ff9d35"},{"text":"FISH","color":"#ff9d35"},{"text":"BIRDS","color":"#ff9d35"}]},
+        {"style":"clear","x":56,"width":1809,"anchor":"right","highlights":[{"text":"LIVESTOCK","color":"#ff9d35"},{"text":"EARTH","color":"#ff9d35"},{"text":"CREEPING THING","color":"#ff9d35"}]}
+      ]
+    },
+    "breath-boundary": {
+      "referencePages":[6,10],
+      "boxes":[
+        {"style":"red","anchor":"left"},
+        {"style":"gold","anchor":"right"},
+        {"style":"clearGold","anchor":"left"},
+        {"style":"blue","anchor":"center"},
+        {"style":"clear","anchor":"right"}
+      ]
+    },
+    "works-of-gods-hands": {
+      "referencePages":[11,14],
+      "boxes":[
+        {"style":"red","anchor":"left","highlights":[{"text":"SON OF MAN","color":"#ffffff"},{"text":"MAN","color":"#ffffff"}]},
+        {"style":"clear","anchor":"center"},
+        {"style":"gold","anchor":"right","highlights":[{"text":"DOMINION","color":"#c41c2d"}]},
+        {"style":"blue","anchor":"left","highlights":[{"text":"BEASTS","color":"#000000"}]}
+      ]
+    },
+    "fatal-inversion": {
+      "referencePages":[15,18],
+      "note":"The outline adds the For God knows block to the reference's four blocks.",
+      "boxes":[
+        {"style":"red","anchor":"left"},
+        {"style":"clear","anchor":"right"},
+        {"style":"cyan","anchor":"left"},
+        {"style":"clear","anchor":"center"},
+        {"style":"gold","anchor":"right"}
+      ]
+    },
+    "liar-murderer": {
+      "referencePages":[19,23],
+      "boxes":[
+        {"style":"gray","anchor":"left"},
+        {"style":"cyan","anchor":"left","width":1500},
+        {"style":"darkRed","anchor":"right","width":1700,"x":140},
+        {"style":"goldBlack","anchor":"left","width":1700},
+        {"style":"white","anchor":"right","width":1600,"x":240}
+      ]
+    },
+    "animal-mortality": {
+      "referencePages":[24,28],
+      "boxes":[
+        {"style":"red","anchor":"left"},
+        {"style":"clear","anchor":"center"},
+        {"style":"gold","anchor":"right"},
+        {"style":"blue","anchor":"left"},
+        {"style":"clearGold","anchor":"right"}
+      ]
+    },
+    "dying-like-beasts": {
+      "referencePages":[29,33],
+      "boxes":[
+        {"style":"red","anchor":"left"},
+        {"style":"clear","anchor":"center"},
+        {"style":"gold","anchor":"left"},
+        {"style":"clearOrange","anchor":"right"},
+        {"style":"blueBlack","anchor":"left"}
+      ]
+    },
+    "murderers-beasts": {
+      "referencePages":[34,38],
+      "note":"The new outline's final two blocks replace the reference's quotation/commentary area.",
+      "boxes":[
+        {"style":"red","anchor":"left","highlights":[{"text":"VIOLENCE","color":"#ffffff"}]},
+        {"style":"blue","anchor":"left"},
+        {"style":"goldBlack","anchor":"right","highlights":[{"text":"HIS FELLOW MAN","color":"#c41c2d"}]},
+        {"style":"clear","anchor":"center"},
+        {"style":"clear","anchor":"right"}
+      ]
+    },
+    "egypt-sea-monster": {
+      "designBasis":"Extension of reference gray/cyan/clear/gold vocabulary; no matching reference pages.",
+      "boxes":[{"style":"gray","anchor":"left"},{"style":"cyan","anchor":"right"},{"style":"clear","anchor":"left"},{"style":"gold","anchor":"right"}]
+    },
+    "devolution-king": {
+      "designBasis":"Extension of reference mortality layout; no matching reference pages.",
+      "boxes":[{"style":"gold","anchor":"left"},{"style":"clear","anchor":"right"},{"style":"blue","anchor":"left"},{"style":"gray","anchor":"center"},{"style":"clearGold","anchor":"right"}]
+    },
+    "beasts-true-human": {
+      "designBasis":"Extension of reference contrast layout; no matching reference pages.",
+      "boxes":[{"style":"darkRed","anchor":"left"},{"style":"clear","anchor":"center"},{"style":"blue","anchor":"right"},{"style":"gold","anchor":"left"}]
+    },
+    "fleeing-serpent": {
+      "designBasis":"Extension of reference red/cyan/unboxed/gray vocabulary; no matching reference pages.",
+      "boxes":[{"style":"red","anchor":"left"},{"style":"cyan","anchor":"right"},{"style":"clear","anchor":"left"},{"style":"gray","anchor":"right"}]
+    },
+    "murderous-silence": {
+      "designBasis":"Extension of reference Liar and Murderer layout; no matching reference pages.",
+      "boxes":[{"style":"gray","anchor":"left"},{"style":"cyan","anchor":"right"},{"style":"darkRed","anchor":"left"},{"style":"goldBlack","anchor":"center"},{"style":"white","anchor":"right"}]
+    },
+    "fleeing-prophet": {
+      "designBasis":"Extension of reference mixed boxed/unboxed layout; no matching reference pages.",
+      "boxes":[{"style":"red","anchor":"left"},{"style":"clear","anchor":"right"},{"style":"blue","anchor":"left"},{"style":"gold","anchor":"center"},{"style":"clearGold","anchor":"right"}]
+    },
+    "beasts-choose-life": {
+      "designBasis":"Extension of reference gold/blue/unboxed/white vocabulary; no matching reference pages.",
+      "boxes":[{"style":"gold","anchor":"left"},{"style":"blue","anchor":"right"},{"style":"clear","anchor":"left"},{"style":"white","anchor":"right"}]
+    },
+    "heart-of-beast": {
+      "designBasis":"Extension of reference red/gray/unboxed/gold vocabulary; no matching reference pages.",
+      "boxes":[{"style":"red","anchor":"left"},{"style":"gray","anchor":"right"},{"style":"clear","anchor":"left"},{"style":"gold","anchor":"right"}]
+    },
+    "serving-not-devouring": {
+      "designBasis":"Six-block extension of reference vocabulary; no matching reference pages.",
+      "boxes":[{"style":"gray","anchor":"left"},{"style":"red","anchor":"right"},{"style":"clear","anchor":"left"},{"style":"blue","anchor":"center"},{"style":"gold","anchor":"right"},{"style":"white","anchor":"left"}]
+    },
+    "cultivating-life": {
+      "designBasis":"Extension of reference blue/gold/unboxed/white vocabulary; no matching reference pages.",
+      "boxes":[{"style":"blue","anchor":"left"},{"style":"gold","anchor":"right"},{"style":"clear","anchor":"left"},{"style":"white","anchor":"center"},{"style":"clearGold","anchor":"right"}]
+    }
+  }
+}

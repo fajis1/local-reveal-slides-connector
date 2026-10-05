@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Local Reveal Slides Connector</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="presentation.css">
+</head>
+<body>
+  <main class="reveal"><div class="slides" id="slide-container"></div></main>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+  (async () => {
+    const response = await fetch('slides.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`slides.json: HTTP ${response.status}`);
+    const slides = await response.json();
+    const container = document.getElementById('slide-container');
+    const ns = 'http://www.w3.org/2000/svg';
+    const fallbackFonts = {
+      'DINCondensed-Bold': 'Arial Narrow, Liberation Sans Narrow, sans-serif',
+      'DINAlternate-Bold': 'Arial Narrow, Liberation Sans Narrow, sans-serif'
+    };
+    const make = (tag, attributes) => {
+      const element = document.createElementNS(ns, tag);
+      for (const [key, value] of Object.entries(attributes)) element.setAttribute(key, value);
+      return element;
+    };
+    for (const slide of slides) {
+      const titleRun = slide.buildStates[0].runs.find(run => run.text === slide.title);
+      const referenceRun = slide.buildStates[0].runs.find(run => run.text === slide.reference);
+      const fixedTitle = titleRun ? { ...titleRun, opacity: 1, boxIndex: null } : null;
+      const fixedReference = referenceRun ? { ...referenceRun, opacity: 1, boxIndex: null } : null;
+      slide.buildStates.forEach((state, index) => {
+        const section = document.createElement('section');
+        section.dataset.slideId = slide.id;
+        section.dataset.buildState = index + 1;
+        const svg = make('svg', {
+          viewBox: '0 0 1920 1080', role: 'img',
+          'aria-label': `${slide.title}, build ${index + 1}`, class: 'slide-art'
+        });
+        const groups = new Map();
+        const target = item => {
+          if (item.boxIndex == null) return svg;
+          if (!groups.has(item.boxIndex)) {
+            const group = make('g', { opacity: item.opacity ?? 1 });
+            groups.set(item.boxIndex, group);
+            svg.appendChild(group);
+          }
+          return groups.get(item.boxIndex);
+        };
+        for (const shape of state.shapes) {
+          const { boxIndex, opacity, ...attributes } = shape;
+          target(shape).appendChild(make('rect', attributes));
+        }
+        for (const stateRun of state.runs) {
+          const run = fixedTitle && stateRun.text === slide.title ? fixedTitle
+            : fixedReference && stateRun.text === slide.reference ? fixedReference : stateRun;
+          const text = make('text', {
+            x: run.x, y: run.y, fill: run.color,
+            'font-family': fallbackFonts[run.font] || run.font,
+            'font-size': run.size, textLength: run.width,
+            lengthAdjust: 'spacingAndGlyphs', 'xml:space': 'preserve'
+          });
+          text.textContent = run.text;
+          target(run).appendChild(text);
+        }
+        section.appendChild(svg);
+        const notes = document.createElement('aside');
+        notes.className = 'notes';
+        notes.textContent = slide.context || '';
+        section.appendChild(notes);
+        container.appendChild(section);
+      });
+    }
+    await Reveal.initialize({
+      hash: true, width: 1920, height: 1080, margin: 0, center: false,
+      controls: false, progress: false, transition: 'none', backgroundTransition: 'none'
+    });
+  })().catch(error => {
+    console.error(error);
+    document.body.textContent = `Unable to load presentation: ${error.message}`;
+  });
+  </script>
+</body>
+</html>

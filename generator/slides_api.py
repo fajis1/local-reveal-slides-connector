@@ -148,6 +148,7 @@ class SlidesClient:
 def prepare_payload(definition):
     """Convert Define API blocks into independently editable REST content blocks."""
     from slides_native import NativeTypography, serialize_rest_text_block
+    from slides_image import serialize_rest_image_block
     typography = NativeTypography()
     slides = []
     for slide in definition['slides']:
@@ -169,19 +170,7 @@ def prepare_payload(definition):
                     native = typography.fit(block)
                 markup.append(serialize_rest_text_block(block,native,block_id))
             elif block['type'] == 'image':
-                height = block['height']
-                src = block['src']
-                if not src.startswith('http'):
-                    origin = os.environ.get('PRESENTATION_ASSET_ORIGIN', '').rstrip('/')
-                    if not origin:
-                        raise ApiError('Relative image sources require PRESENTATION_ASSET_ORIGIN.')
-                    src = f"{origin}/{src.lstrip('/')}"
-                markup.append(
-                    f'<div class="sl-block" data-block-type="image" data-block-id="{block_id}" '
-                    f'style="left:{x}px;top:{y}px;width:{width}px;height:{height}px;">'
-                    f'<div class="sl-block-content">'
-                    f'<img src="{html.escape(src)}" style="width:100%;height:100%;object-fit:contain;" />'
-                    f'</div></div>')
+                markup.append(serialize_rest_image_block(block, block_id))
             else:
                 raise ApiError('Unsupported block type in the generated definition.')
         markup.append('</section>')

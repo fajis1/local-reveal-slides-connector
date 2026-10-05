@@ -260,7 +260,10 @@ for slide_number, slide in enumerate(source, 1):
             "y": img_y,
             "width": img_w,
             "height": img_h,
-            "src": slide["asset"],
+            # Slides' native image definition uses value, not a hand-written
+            # HTML src attribute.  The REST serializer resolves it to a public
+            # URL and supplies the editor's natural-image metadata.
+            "value": slide.get("asset_url", slide["asset"]),
             "class": f"citation-img-{slide_number}"
         }
         blocks = [img_block]

@@ -1,6 +1,7 @@
 """Compare an actually saved Slides.com deck against its expected native payload."""
 import html
 import re
+from urllib.parse import urlsplit
 from lxml import html as dom
 
 
@@ -45,9 +46,67 @@ def validate_autofit_block(block):
     return errors
 
 
+def image_url(image):
+    """An editor-native image must retain both the eager and lazy URL forms."""
+    src = image.get('src')
+    data_src = image.get('data-src')
+    return src or data_src, src, data_src
+
+
+def valid_https_url(value):
+    parsed = urlsplit(value or '')
+    return parsed.scheme == 'https' and bool(parsed.netloc)
+
+
+def positive_dimension(value):
+    try:
+        return float(value) > 0
+    except (TypeError, ValueError):
+        return False
+
+
+def validate_image_block(expected, actual, label):
+    """Validate editor readiness, not merely presentation-mode lazy loading."""
+    errors = []
+    expected_images = expected.xpath('.//img')
+    actual_images = actual.xpath('.//img')
+    if len(expected_images) != 1:
+        return [label + ': expected image block must contain exactly one img']
+    if len(actual_images) != 1:
+        return [label + ': saved image block must contain exactly one img']
+    expected_url, _, _ = image_url(expected_images[0])
+    image = actual_images[0]
+    actual_url, src, data_src = image_url(image)
+    if not valid_https_url(expected_url):
+        errors.append(label + ': expected image URL is not absolute HTTPS')
+    if not valid_https_url(actual_url):
+        errors.append(label + ': saved image URL is not absolute HTTPS')
+    if not src:
+        errors.append(label + ': saved image is missing src (editor placeholder risk)')
+    if not data_src:
+        errors.append(label + ': saved image is missing data-src')
+    if src and data_src and src != data_src:
+        errors.append(label + ': saved src and data-src differ')
+    if expected_url != actual_url or (src and expected_url != src) or (data_src and expected_url != data_src):
+        errors.append(label + ': saved image URL differs from expected citation asset')
+    for attribute in ('data-natural-width', 'data-natural-height'):
+        if not positive_dimension(image.get(attribute)):
+            errors.append(label + ': saved image has invalid ' + attribute)
+    content = actual.xpath('./div[contains(concat(" ",normalize-space(@class)," ")," sl-block-style ")]/div[contains(concat(" ",normalize-space(@class)," ")," sl-block-content ")]')
+    if len(content) != 1:
+        errors.append(label + ': saved image lacks native style/content wrappers')
+    geometry = css(actual)
+    for key in ('left', 'top', 'width', 'height'):
+        if not positive_dimension(geometry.get(key, '0').removesuffix('px')) and key in ('width', 'height'):
+            errors.append(label + ': saved image has invalid ' + key)
+        if key in ('left', 'top') and key not in geometry:
+            errors.append(label + ': saved image is missing ' + key)
+    return errors
+
+
 def validate_saved_slides(payload, saved):
     actual=dom.fromstring('<main>'+saved['deck_html']+'</main>')
-    errors=[]; passage_count=0; text_count=0; backgrounds=0; inline_colors=0
+    errors=[]; passage_count=0; text_count=0; image_count=0; backgrounds=0; inline_colors=0
     sections=actual.xpath('//section')
     if len(sections)!=len(payload['slides']): errors.append('Saved slide count differs')
     shapes=actual.xpath('//*[@data-block-type="shape"]')
@@ -107,7 +166,20 @@ def validate_saved_slides(payload, saved):
             actual_spans=[(s.text_content(),color(css(s)['color'])) for s in saved_content.xpath('.//span[@style]') if 'color' in css(s)]
             if expected_spans!=actual_spans: errors.append(label+': inline word colors changed')
             inline_colors+=len(expected_spans)
+        found_images={b.get('data-block-id'):b for b in section.xpath('.//*[@data-block-type="image"]')}
+        expected_images=expected.xpath('.//*[@data-block-type="image"]')
+        if len(found_images)!=len(expected_images): errors.append(f'Slide {index+1}: image block count changed')
+        for block in expected_images:
+            identity=block.get('data-block-id'); label=f'Slide {index+1} image {identity}'
+            target=found_images.get(identity)
+            if target is None:
+                errors.append(label+': missing native image block')
+                continue
+            image_count+=1
+            errors.extend(validate_image_block(block,target,label))
     return {'slides':len(sections),'textBlocks':text_count,'passageBlocks':passage_count,
             'nativeAutoFit':len(actual.xpath('//*[@data-block-type="text"][@data-auto-fit-text="true"]')),
             'backgroundTextBlocks':backgrounds,'inlineColorSpans':inline_colors,
+            'imageBlocks':image_count,
+            'nativeEditorImages':image_count if not any('image ' in error.lower() for error in errors) else 0,
             'shapeBlocks':len(shapes),'errors':errors,'passed':not errors}

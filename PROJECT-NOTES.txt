@@ -1,0 +1,17 @@
+Local Reveal Slides Connector
+
+This is a generic local Reveal.js presentation project with a safe Slides.com
+handoff page at slides-com.html.
+
+Included files are limited to the slide data, browser viewer, and Slides.com
+handoff page.
+Reveal.js is loaded from jsDelivr at runtime; no local dependencies, fonts,
+source PDFs, account integrations, credentials, Markdown files, or review
+artifacts are included.
+
+The direct Slides.com API workflow is intentionally not included: it needs a
+private credential and should be implemented through a local authenticated
+bridge, never committed to this repository.
+
+Before publishing, confirm that you have permission to publicly distribute the
+current presentation text and any quotations it contains.

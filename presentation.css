@@ -1,0 +1,8 @@
+html, body, .reveal { background: #222; }
+.reveal .slides > section { padding: 0; height: 1080px; }
+.slide-art { display: block; width: 1920px; height: 1080px; }
+.slide-art text { white-space: pre; }
+@media print {
+  @page { size: 16in 9in; margin: 0; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+}
